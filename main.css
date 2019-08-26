@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300&display=swap');
+
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+    padding: 10px;
+    overflow: visible;
+}
+
+#editModal  {
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 10px;
+    background: linear-gradient(white, snow);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.container {
+    max-width: 800px;
+    padding: 10px;
+    background: linear-gradient(white, snow);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+button {
+    padding: 9px 16px;
+    font-family: 'Roboto', sans-serif;
+    min-width: 40px;
+    text-align: center;
+    border-radius: 80px;
+    border: none;
+    background: rgb(28, 130, 214); 
+    color: white;
+    border: 1none;
+    font-size: 16px;
+    outline: none;
+}
+
+.green {
+    background: rgb(197, 255, 205);
+    border: 2px rgb(35, 163, 10) solid; 
+    color: rgb(35, 163, 10);
+    box-shadow: 0 0 10px rgba(35, 163, 10, .5);
+    font-weight: bold;
+    transition: .2s;
+}
+
+.green:hover {
+    background: rgb(110, 255, 129);
+    border: 2px rgb(35, 163, 10) solid; 
+    color: rgb(35, 163, 10);
+    box-shadow: 0 0 10px rgba(35, 163, 10, .85);
+    font-weight: bold;
+}
+
+.red {
+    background: rgb(255, 188, 188);
+    border: 2px rgb(255, 0, 0) solid; 
+    color: rgb(255, 0, 0);
+    box-shadow: 0 0 10px rgba(255, 0, 0, .5);
+    font-weight: bold;
+    transition: .2s;
+}
+
+.red:hover {
+    background: rgb(255, 93, 93);
+    border: 2px rgb(255, 0, 0) solid; 
+    color: rgb(255, 0, 0);
+    box-shadow: 0 0 10px rgba(255, 0, 0, .85);
+    font-weight: bold;
+}
+
+.grey {
+    background: white;
+    border: 2px rgb(199, 199, 199) solid; 
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+    color: rgb(88, 88, 88);
+    transition: .2s;
+}
+
+.grey:hover {
+    background: rgb(224, 224, 224);
+    border: 2px rgb(199, 199, 199) solid; 
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.85);
+    color: rgb(88, 88, 88);
+}
+
+input, select {
+    padding: 9px 7px;
+    font-family: 'Roboto', sans-serif;
+    min-width: 40px;
+    border-radius: 6px;
+    border: 1px rgb(200, 200, 200) solid;
+    font-size: 16px;
+}
+
+select {
+    border-radius: 50px;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(28, 130, 214);
+    margin: 0 0 10px;
+    font-size: 24px;
+}
+
+ul {
+    width: 800px;
+    padding: 10px;
+    background: linear-gradient(white, snow);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    display: inline-block;
+}
+
+
+ul::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+ul li {
+    padding: 10.5px 2px 10.5px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    list-style-type: none;
+    display: table;
+    background: white;
+    border: 2px rgb(199, 199, 199) solid; 
+    color: rgb(88, 88, 88);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    width: 100%;
+    transition: .3s;
+}
+
+ul li:hover {
+    background: rgb(197, 246, 255);
+    border: 2px rgb(10, 132, 163) solid; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+ul li.completed {
+    text-decoration: line-through;
+    background: rgb(194, 194, 194);
+    border: 2px rgb(144, 144, 144) solid; 
+    color: rgb(88, 88, 88);
+}
+
+ul li.completed:hover {
+    background: rgb(182, 195, 197);
+    border: 2px rgb(39, 98, 112) solid; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+li button, li select {
+    float: right;
+    margin-right: 8px;
+}
+
+.jam {
+    display: block;
+    text-align: center;
+}
+
+li:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+li span {
+    max-width: 420px;
+    font-size: 18px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.btngroup {
+    display: inline-block;
+    float: right;
+}
+
+.spacer {
+    display: block;
+    height: 10px;
+}
+
+#listContainer {
+    overflow: auto;
+    white-space: nowrap;
+}
