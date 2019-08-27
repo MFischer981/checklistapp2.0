@@ -1,29 +1,27 @@
 
 var currentListItem = 0;
-
-
-dragula([document.getElementById("mainList")]);
-
+var allLists = []
 
 function newList() {
     var newListInput = document.getElementById("newList").value;
+    var newListId;
     if (newListInput !== "") {
-        var newListId = newListInput.replace(/\s/g, '');
+    newListId = newListInput.replace(/\s/g, '');
     document.getElementById("listContainer").innerHTML += `<ul id="${newListId}">
     <h1>${newListInput}</h1>
     <input type="text" id="${newListId}Input">
     <button type="button" class="green" onclick="addNewListItem('${newListId}')">➕ New List Item</button>
+    <button onclick="deleteList()" class="red">🗑️Delete List</button>
     <div class="spacer"></div>
     </ul>`;
-    dragula([document.getElementById(newListId)]);
-    }
+}
 }
 
 function addNewListItem(id) {
         var newListItem = document.getElementById(`${id}Input`).value;
         if (newListItem !== "") {
             currentListItem++;
-            document.getElementById(id).innerHTML += `<li><span id="listItem${currentListItem}">${newListItem}</span><div class="btngroup"><button onclick="deleteItem()" class="red">🗑️</button><button onclick="editItem()" class="grey">✏️</button><button onclick="checkItem()" class="green">☑️</button></div></li>`;
+            document.getElementById(id).innerHTML += `<li><span id="listItem${currentListItem}">${newListItem}</span><div class="btngroup"><button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="editItem()" class="grey">✏️Edit</button><button onclick="checkItem()" class="green">☑️Complete</button></div></li>`;
         }
 }
 
@@ -62,5 +60,23 @@ function checkItem() {
 
 function uncheckItem() {
     event.target.parentNode.parentNode.classList.remove("completed");
-    event.target.parentNode.innerHTML = '<button onclick="deleteItem()" class="red">🗑️</button><button onclick="editItem()" class="grey">✏️</button><button onclick="checkItem()" class="green">☑️</button>';
+    event.target.parentNode.innerHTML = '<button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="editItem()" class="grey">✏️Edit</button><button onclick="checkItem()" class="green">☑️Complete</button>';
+}
+
+var verifyDelete;
+var listTitle;
+function deleteList() {
+    verifyDelete = event.target.parentNode;
+    listTitle = verifyDelete.childNodes[1].innerHTML;
+    document.getElementById("deleteListModal").style.display = "block";
+    document.getElementById("deleteListModalTitle").innerHTML = `Are you sure you want to delete ${listTitle}? <br> This action cannot be undone.`
+}
+
+function deleteListConfirm() {
+    document.getElementById(verifyDelete.id).outerHTML = "";
+    document.getElementById("deleteListModal").style.display = "none";
+}
+
+function deleteListCancel() {
+    document.getElementById("deleteListModal").style.display = "none";
 }

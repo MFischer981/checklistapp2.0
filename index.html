@@ -6,7 +6,6 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="dragula.css">
     <link rel="stylesheet" href="main.css">
 </head>
 
@@ -14,7 +13,7 @@
 
 
     <div class="container">
-        <h1>List.io</h1>
+        <h1>List.io | Create a new list.</h1>
             <input type="text" id="newList">
             <button type="button" class="green" onclick="newList()">➕ New List</button>
             <button type="button" class="grey" onclick="hideCompletedTasks()">👁️ Hide Completed Tasks</button>
@@ -25,6 +24,7 @@
                 <h1>My Checklist</h1>
                 <input type="text" id="mainListInput">
                 <button  type="button" class="green" onclick="addNewListItem('mainList')">➕ New List Item</button>
+                <button onclick="deleteList()" class="red">🗑️Delete List</button>
                 <div class="spacer"></div>
             </ul>
 </div>
@@ -35,14 +35,18 @@
     <div id="editModal">
         <h1>Edit List Item</h1>
         <input type="text" id="editListItemInput">
-        
         <button type="button" class="green" onclick="saveEdits()" >Save changes</button>
         <button type="button" class="red" onclick="closeEdits()">Close</button>
     </div>
 
-    <script src="dragula.js"></script>
-    <script src="main.js"></script>
+    <div id="deleteListModal">
+        <h1 id="deleteListModalTitle">Edit List Item</h1>
+        <button type="button" class="red" onclick="deleteListConfirm()" >👍Yes, I'm Sure.</button>
+        <button type="button" class="grey" onclick="deleteListCancel()">👎Cancel</button>
+    </div>
 
+
+    <script src="main.js"></script>
 </body>
 
 </html>
