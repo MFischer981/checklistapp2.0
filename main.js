@@ -1,32 +1,51 @@
-
-var currentListItem = 0;
-var allLists = []
+let currentListItem = 0;
+let allLists = []
 
 function newList() {
     var newListInput = document.getElementById("newList").value;
     var newListId;
     if (newListInput !== "") {
-    newListId = newListInput.replace(/\s/g, '');
-    document.getElementById("listContainer").innerHTML += `<ul id="${newListId}">
+        newListId = newListInput.replace(/\s/g, '');
+        document.getElementById("listContainer").innerHTML += `<ul id="${newListId}">
     <h1>${newListInput}</h1>
     <input type="text" id="${newListId}Input">
     <button type="button" class="green" onclick="addNewListItem('${newListId}')">➕ New List Item</button>
     <button onclick="deleteList()" class="red">🗑️Delete List</button>
     <div class="spacer"></div>
     </ul>`;
-}
+    }
 }
 
 function addNewListItem(id) {
-        var newListItem = document.getElementById(`${id}Input`).value;
-        if (newListItem !== "") {
-            currentListItem++;
-            document.getElementById(id).innerHTML += `<li><span id="listItem${currentListItem}">${newListItem}</span><div class="btngroup"><button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="editItem()" class="grey">✏️Edit</button><button onclick="checkItem()" class="green">☑️Complete</button></div></li>`;
-        }
+    var newListItem = document.getElementById(`${id}Input`).value;
+    if (newListItem !== "") {
+        currentListItem++;
+        document.getElementById(id).innerHTML += `<li id="listItem${currentListItem}"><span>${newListItem}</span><div class="btngroup"><button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="editItem()" class="grey">✏️Edit</button><button onclick="favoriteItem()" class="grey">❤️Favorite</button><button onclick="checkItem()" class="green">☑️Complete</button></div></li>`;
+    }
 }
 
 function deleteItem() {
     event.target.parentNode.parentNode.outerHTML = "";
+}
+
+function favoriteItem() {
+    var favoriteListItem = event.target.parentNode.parentNode.childNodes[0].textContent;
+    event.target.parentNode.parentNode.outerHTML = "";
+    console.log(favoriteListItem)
+    var elementExists = document.getElementById("favorites");
+    if (elementExists === null) {
+        document.getElementById("listContainer").innerHTML += `
+            <ul id="favorites">
+                <h1>Favorites List</h1>
+                <input type="text" id="favoritesInput">
+                <button type="button" class="green" onclick="addNewListItem('favorites')">➕New List Item</button>
+                <button onclick="deleteList()" class="red">🗑️Delete List</button>
+                <div class="spacer"></div>
+        </ul>`;
+        currentListItem++;
+        document.getElementById("favorites").innerHTML += `<li id="listItem${currentListItem}"><span>${favoriteListItem}</span><div class="btngroup"><button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="editItem()" class="grey">✏️Edit</button><button onclick="" class="grey">🖤Unfavorite</button><button onclick="checkItem()" class="green">☑️Complete</button></div></li>`
+    } else {    
+    }
 }
 
 var editingItem;
@@ -38,7 +57,6 @@ function editItem() {
     var oldListItem = event.target.parentNode.parentNode.childNodes[0].innerHTML;
     document.getElementById("editListItemInput").value = oldListItem;
     document.getElementById("editListItemInput").focus()
-
 }
 
 function saveEdits() {
@@ -55,7 +73,7 @@ function closeEdits() {
 
 function checkItem() {
     event.target.parentNode.parentNode.classList.add("completed");
-    event.target.parentNode.innerHTML = '<button onclick="uncheckItem()" class="grey">↩️</button>';
+    event.target.parentNode.innerHTML = '<button onclick="uncheckItem()" class="grey">↩️Add Back to List</button>';
 }
 
 function uncheckItem() {
@@ -63,8 +81,9 @@ function uncheckItem() {
     event.target.parentNode.innerHTML = '<button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="editItem()" class="grey">✏️Edit</button><button onclick="checkItem()" class="green">☑️Complete</button>';
 }
 
-var verifyDelete;
-var listTitle;
+let verifyDelete;
+let listTitle;
+
 function deleteList() {
     verifyDelete = event.target.parentNode;
     listTitle = verifyDelete.childNodes[1].innerHTML;

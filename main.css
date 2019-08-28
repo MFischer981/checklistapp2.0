@@ -4,13 +4,12 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -59,16 +58,14 @@ button {
     border: 2px rgb(35, 163, 10) solid; 
     color: rgb(35, 163, 10);
     box-shadow: 0 0 10px rgba(35, 163, 10, .5);
-    font-weight: bold;
     transition: .2s;
 }
 
 .green:hover {
-    background: rgb(110, 255, 129);
+    background: rgb(92, 182, 104);
     border: 2px rgb(35, 163, 10) solid; 
-    color: rgb(35, 163, 10);
+    color: white;
     box-shadow: 0 0 10px rgba(35, 163, 10, .85);
-    font-weight: bold;
 }
 
 .red {
@@ -76,16 +73,14 @@ button {
     border: 2px rgb(255, 0, 0) solid; 
     color: rgb(255, 0, 0);
     box-shadow: 0 0 10px rgba(255, 0, 0, .5);
-    font-weight: bold;
     transition: .2s;
 }
 
 .red:hover {
     background: rgb(255, 93, 93);
     border: 2px rgb(255, 0, 0) solid; 
-    color: rgb(255, 0, 0);
+    color: white;
     box-shadow: 0 0 10px rgba(255, 0, 0, .85);
-    font-weight: bold;
 }
 
 .grey {
@@ -150,6 +145,7 @@ ul li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
     width: 100%;
+    margin: 10px 0;
 }
 
 ul li:hover {
