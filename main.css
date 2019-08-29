@@ -1,16 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
 
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -21,33 +19,33 @@ body {
     overflow: visible;
 }
 
-#editModal, #deleteListModal  {
+#editModal, #deleteListModal, #newTagModal, #applyTagModal  {
     display: none;
     position: fixed;
     top: 40%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     padding: 20px;
-    background: linear-gradient(white, snow);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px grey solid; 
+    color: grey;
     border-radius: 6px;
+    background: white;
 }
 
 .container {
-    max-width: 800px;
     padding: 10px;
-    background: linear-gradient(white, snow);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px grey solid; 
+    color: grey;
     border-radius: 6px;
 }
 
 button {
     padding: 9px 16px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lexend Deca', sans-serif;
     text-align: center;
     border-radius: 80px;
     border: none;
-    background: rgb(28, 130, 214); 
+    background: white;
     color: white;
     border: 1none;
     font-size: 16px;
@@ -55,59 +53,41 @@ button {
 }
 
 .green {
-    background: rgb(197, 255, 205);
-    border: 2px rgb(35, 163, 10) solid; 
-    color: rgb(35, 163, 10);
-    box-shadow: 0 0 10px rgba(35, 163, 10, .5);
-    font-weight: bold;
-    transition: .2s;
+    border: 2px rgb(10, 132, 163) solid; 
+    color: rgb(10, 132, 163);
+    transition: .2s; 
 }
 
 .green:hover {
-    background: rgb(110, 255, 129);
-    border: 2px rgb(35, 163, 10) solid; 
-    color: rgb(35, 163, 10);
-    box-shadow: 0 0 10px rgba(35, 163, 10, .85);
-    font-weight: bold;
+    background: rgb(213, 239, 246);
 }
 
 .red {
-    background: rgb(255, 188, 188);
-    border: 2px rgb(255, 0, 0) solid; 
-    color: rgb(255, 0, 0);
-    box-shadow: 0 0 10px rgba(255, 0, 0, .5);
-    font-weight: bold;
-    transition: .2s;
+    border: 2px rgb(207, 53, 53) solid; 
+    color: rgb(207, 53, 53);
+    transition: .2s; 
 }
 
 .red:hover {
-    background: rgb(255, 93, 93);
-    border: 2px rgb(255, 0, 0) solid; 
-    color: rgb(255, 0, 0);
-    box-shadow: 0 0 10px rgba(255, 0, 0, .85);
-    font-weight: bold;
+    background: rgb(251, 212, 212);
 }
 
 .grey {
-    background: white;
-    border: 2px rgb(199, 199, 199) solid; 
-    box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
-    color: rgb(88, 88, 88);
-    transition: .2s;
+    border: 2px grey solid; 
+    color: grey;
+    transition: .2s; 
 }
 
 .grey:hover {
-    background: rgb(224, 224, 224);
-    border: 2px rgb(199, 199, 199) solid; 
-    box-shadow: 0 0 10px rgba(128, 128, 128, 0.85);
-    color: rgb(88, 88, 88);
+    background: rgb(228, 228, 228);
 }
 
 input, select {
     padding: 9px 7px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lexend Deca', sans-serif;
     border-radius: 6px;
-    border: 1px rgb(200, 200, 200) solid;
+    border: 2px grey solid; 
+    color: grey;
     font-size: 16px;
 }
 
@@ -116,19 +96,21 @@ select {
 }
 
 h1 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lexend Deca', sans-serif;
+
     color: rgb(28, 130, 214);
     margin: 0 0 10px;
     font-size: 24px;
 }
 
 ul {
-    width: 800px;
     padding: 10px;
-    background: linear-gradient(white, snow);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px grey solid; 
+    color: grey;
     border-radius: 6px;
+    float: left;
     display: inline-block;
+    width: 100%;
 }
 
 
@@ -140,22 +122,15 @@ ul::after {
 
 ul li {
     padding: 10.5px 2px 10.5px 10px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lexend Deca', sans-serif;
     font-size: 16px;
     list-style-type: none;
     display: table;
-    background: white;
-    border: 2px rgb(199, 199, 199) solid; 
-    color: rgb(88, 88, 88);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px grey solid; 
+    color: grey;
     border-radius: 6px;
     width: 100%;
-}
-
-ul li:hover {
-    background: rgb(197, 246, 255);
-    border: 2px rgb(10, 132, 163) solid; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
 }
 
 ul li.completed {
@@ -165,10 +140,10 @@ ul li.completed {
     color: rgb(88, 88, 88);
 }
 
-ul li.completed:hover {
-    background: rgb(182, 195, 197);
-    border: 2px rgb(39, 98, 112) solid; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ul li.star {
+    background: rgb(255, 252, 210);
+    border: 2px rgb(255, 244, 142) solid; 
+    color: rgb(88, 88, 88);
 }
 
 li button, li select {
@@ -188,15 +163,18 @@ li:after {
 }
 
 li span {
-    max-width: 420px;
     font-size: 18px;
-    display: table-cell;
-    vertical-align: middle;
+    word-wrap: break-word;
+    display: inline;
+    float: left;
 }
 
 .btngroup {
     display: inline-block;
     float: right;
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: 16px;
 }
 
 .spacer {
@@ -204,7 +182,108 @@ li span {
     height: 10px;
 }
 
+
+.sm_spacer {
+    display: block;
+    height: 4px;
+}
+
 #listContainer {
     overflow: auto;
     white-space: nowrap;
 }
+
+.progress {
+    display: block;
+    background: rgb(20, 20, 20);
+    height: 40px;
+    width: 100%;
+}
+
+.progress .complete {
+    display: block;
+    background: rgb(10, 132, 163);
+    height: 40px;
+}
+
+.color {
+    width: 40px;
+    height: 40px;
+    background: black;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 0 0 4px;
+}
+
+.tag {
+    font-family: 'Lexend Deca', sans-serif;
+    display: inline-block;
+    color: white;
+    padding: 9px 16px;
+    border-radius: 1000px;
+    text-transform: capitalize;
+    background: black;
+    font-size: 18px;
+    float: left;
+}
+
+#red {
+    background: rgb(231, 38, 38);
+}
+
+#scarlet {
+    background: rgb(241, 69, 38);
+}
+
+#orange {
+    background: rgb(241, 115, 42);
+}
+
+#yellow {
+    background: rgb(246, 166, 16);
+}
+
+#lime {
+    background: rgb(87, 189, 19);
+}
+
+#green {
+    background: rgb(11, 168, 19);
+}
+
+#blue {
+    background: rgb(30, 127, 218);
+}
+
+#indigo {
+    background: rgb(92, 39, 238);
+}
+
+#purple {
+    background: rgb(108, 9, 200);
+}
+
+#pink {
+    background: rgb(226, 35, 178);
+}
+
+#hotpink {
+    background: rgb(245, 16, 130);
+}
+
+#black {
+    background: rgb(20, 20, 20);
+}
+
+#grey {
+    background: rgb(128, 128, 128);
+}
+
+#brown {
+    background: rgb(121, 76, 37);
+}
+
+.tag div {
+    display: inline-block;
+}
+
