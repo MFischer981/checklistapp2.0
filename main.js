@@ -1,23 +1,34 @@
 let currentListItem = 0;
 let allLists = [];
 
+/**
+ *  {
+ *      name: "",
+ *      newListId: "";
+ *  }
+ * 
+ */
 
 function newList() {
     var newListInput = document.getElementById("newList").value;
+    console.log(newListInput)
     var newListId;
-    
-    if (newListInput !== "") {
-        newListId = newListInput.replace(/\s/g, '');
-        document.getElementById("listContainer").innerHTML += `<ul id="${newListId}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-    <h1>${newListInput}</h1>
-    <div class="progress">
-        <div class="complete"></div>
-    </div>
-    <input type="text" id="${newListId}Input">
-    <button type="button" class="green" onclick="addNewListItem('${newListId}')">➕ New List Item</button>
-    <button onclick="deleteList()" class="red">🗑️Delete List</button>
-    <div class="spacer"></div>
-    </ul>`;
+
+    for (let i = 0; i < newList.length; i++) {
+        if (newListInput !== newList[i]) {
+            if (newListInput !== "") {
+                newListId = newListInput.replace(/\s/g, '');
+                document.getElementById("listContainer").innerHTML += `
+        <ul id="${newListId}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+        <h1>${newListInput}</h1>
+        <input type="text" id="${newListId}Input">
+        <button type="button" class="green" onclick="addNewListItem('${newListId}')">➕ New List Item</button>
+        <button onclick="deleteList()" class="red">🗑️Delete List</button>
+        <div class="spacer"></div>
+        </ul>`;
+                allLists.push(newListInput);
+            }
+        }
     }
 }
 
@@ -25,7 +36,8 @@ function addNewListItem(id) {
     var newListItem = document.getElementById(`${id}Input`).value;
     if (newListItem !== "") {
         currentListItem++;
-        document.getElementById(id).innerHTML += `<li id="listItem${currentListItem}" draggable="true" ondragstart="drag(event)">
+        document.getElementById(id).innerHTML += `
+        <li id="listItem${currentListItem}" draggable="true" ondragstart="drag(event)">
         <span id="listItem${currentListItem}content">${newListItem}</span>
         <div class="btngroup">
         <button onclick="deleteItem()" class="red">🗑️Delete</button>
@@ -56,6 +68,7 @@ function unfavoriteItem() {
 
 
 var editingItem;
+
 function editItem() {
     document.getElementById("editModal").style.display = "block";
     console.log(event.target.parentNode.parentNode.id)
@@ -81,7 +94,7 @@ function closeEdits() {
 // Check list item
 function checkItem() {
     event.target.parentNode.parentNode.classList.add("completed");
-    event.target.outerHTML = '<button onclick="uncheckItem()" class="grey">↩️Undo</button>';
+    event.target.parentNode.innerHTML = '<button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="uncheckItem()" class="grey">↩️Undo</button>';
 }
 
 // Uncheck list item
@@ -125,8 +138,8 @@ function newTag() {
 // Create a new tag, display tag pop up
 function createTag() {
     var tag = document.getElementsByClassName("tag");
-    var tagData =  tag[0].id;
-    var tagName =  tag[0].innerHTML;
+    var tagData = tag[0].id;
+    var tagName = tag[0].innerHTML;
     document.getElementById("tagDropdown").innerHTML += `"<option value="${tagData}">${tagName}</option>"`;
     document.getElementById("newTagModal").style.display = "none";
 }
@@ -151,6 +164,7 @@ function setTagName() {
 
 // Add tag to list item
 var eventAddTagTo;
+
 function addTagToItem() {
     eventAddTagTo = event.target.parentNode.parentNode;
     document.getElementById("applyTagModal").style.display = "block";
@@ -177,20 +191,20 @@ function deleteTag() {
 // Prevent default behavior and allow drop on lists.
 function allowDrop(ev) {
     ev.preventDefault();
-  }
-  
+}
+
 // Drag events, transfer text data
-  function drag(ev) {
+function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
-  }
-  
+}
+
 // Drop element in new list
-  function drop(ev, el) {
+function drop(ev, el) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     el.appendChild(document.getElementById(data));
-  }
-  
+}
+
 function hideCompletedItem() {
     var completedItems = document.querySelectorAll("li.completed");
     for (let i = 0; i < completedItems.length; i++) {

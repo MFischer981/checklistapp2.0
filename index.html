@@ -16,8 +16,9 @@
         <h1>List.io | Create a new list.</h1>
         <input type="text" id="newList">
         <button type="button" class="green" onclick="newList()">➕📝New List</button>
-        <button type="button" class="grey" onclick="hideCompletedItem()">👁️Hide Completed Tasks</button>
         <button type="button" class="green" onclick="newTag()">➕🏷️New Tag</button>
+        <button type="button" class="grey" onclick="hideCompletedItem()">👁️Hide Completed Tasks</button>
+
     </div>
 
     <div id="listContainer">
@@ -47,7 +48,7 @@
     <div id="newTagModal">
         <h1>Create A New Tag</h1>
         <input type="text" id="newTagInput" onkeyup="setTagName()"><br>
-        <div class="sm_spacer"></div>
+        <br>
         <div class="color" id="red" onclick="setTagColor()"></div>
         <div class="color" id="scarlet" onclick="setTagColor()"></div>
         <div class="color" id="orange" onclick="setTagColor()"></div>
