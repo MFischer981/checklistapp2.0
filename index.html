@@ -63,7 +63,7 @@
         <div class="color" id="brown" onclick="setTagColor()"></div>
         <div class="color" id="grey" onclick="setTagColor()"></div>
         <div class="color" id="black" onclick="setTagColor()"></div><br>
-        <div class="tag">Tag Preview</div><br><br><br>
+        <div class="tag tagpreview">Tag Preview</div><br><br><br>
         <div class="sm_spacer"></div>
         <button type="button" class="green" onclick="createTag()">➕🏷️Create Tag</button>
         <button type="button" class="grey" onclick="closeTag()">👎Cancel</button>
@@ -73,8 +73,8 @@
         <h1>Apply a tag to this list. To create a tag click the New Tag button in the top menu bar.</h1>
         <select id="tagDropdown">
             <option value="#" disabled>Select a tag.</option>
-        </select><br>
-        <div class="spacer"></div>
+        </select>
+        <hr>
         <button type="button" class="red" onclick="applyTag()">👍Yes, I'm Sure.</button>
         <button type="button" class="grey" onclick="cancelApplyTag()">👎Cancel</button>
     </div>

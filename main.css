@@ -16,7 +16,7 @@ html {
 
 body {
     margin: 0;
-    padding: 20px;
+    padding: 10px;
     background-image: url("https://images.unsplash.com/photo-1566526637242-ec13c43bc455?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
     background-size: cover;
     background-attachment: fixed;
@@ -36,9 +36,13 @@ body {
 }
 
 .container {
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 10px;
     background: rgba(0, 0, 0, 0.85);
     font-family: 'Lexend Deca', sans-serif;
+    width: 100%;
 }
 
 button {
@@ -52,6 +56,10 @@ button {
     outline: none;
 }
 
+.spacer {
+    display: block;
+    height: 20px;
+}
 
 input, select {
     padding: 6px 12px;
@@ -73,6 +81,8 @@ h1 {
 }
 
 ul {
+    min-width: 600px;
+    margin: 10px 0;
     padding: 10px;
     background: rgba(0, 0, 0, 0.85);
     font-family: 'Lexend Deca', sans-serif;
@@ -112,17 +122,23 @@ li span {
     display: inline;
     float: left;
     min-width: 480px;
+    margin-bottom: 10px;
 }
 
 .btngroup {
     display: inline-block;
     float: right;
     margin-left: 16px;
-    min-width: 680px;
+    width: 520px;
+    margin-bottom: 10px;
 }
 
 #listContainer {
     white-space: nowrap;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 120px;
 }
 
 
@@ -139,12 +155,20 @@ li span {
     font-family: 'Lexend Deca', sans-serif;
     display: inline-block;
     color: white;
-    padding: 9px 16px;
+    padding: 6px 12px;
     border-radius: 1000px;
     text-transform: capitalize;
     background: black;
-    font-size: 18px;
+    font-size: 12px;
+    float: right;
+}
+
+.tag.tagpreview {
     float: left;
+}
+
+hr {
+    border: white 1px solid;
 }
 
 #red {

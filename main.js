@@ -1,36 +1,44 @@
 let currentListItem = 0;
-let allLists = [];
+let allLists = ["My Checklist"];
 
-/**
- *  {
- *      name: "",
- *      newListId: "";
- *  }
- * 
- */
 
 function newList() {
     var newListInput = document.getElementById("newList").value;
-    console.log(newListInput)
     var newListId;
+    var listItemInDock = [];
+    var newArray = [];
+    listItemInDock.push(newListInput);
+    
+    newArray = compare(listItemInDock, allLists);
 
-    for (let i = 0; i < newList.length; i++) {
-        if (newListInput !== newList[i]) {
-            if (newListInput !== "") {
-                newListId = newListInput.replace(/\s/g, '');
-                document.getElementById("listContainer").innerHTML += `
-        <ul id="${newListId}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-        <h1>${newListInput}</h1>
-        <input type="text" id="${newListId}Input">
-        <button type="button" class="green" onclick="addNewListItem('${newListId}')">➕ New List Item</button>
-        <button onclick="deleteList()" class="red">🗑️Delete List</button>
-        <div class="spacer"></div>
-        </ul>`;
-                allLists.push(newListInput);
-            }
+    if (newArray.length === 0) {
+
+        if (newListInput !== "") {
+            newListId = newListInput.replace(/\s/g, '');
+            document.getElementById("listContainer").innerHTML += `
+    <ul id="${newListId}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+    <h1>${newListInput}</h1>
+    <input type="text" id="${newListId}Input">
+    <button type="button" class="green" onclick="addNewListItem('${newListId}')">➕ New List Item</button>
+    <button onclick="deleteList()" class="red">🗑️Delete List</button>
+    <div class="spacer"></div>
+    </ul>`;
+    allLists.push(newListInput);
         }
-    }
+      }
 }
+
+// Function to compare arrays to check for repeat lists.
+function compare(arr1,arr2){
+    const finalArray = [];
+    arr1.forEach((e1)=>arr2.forEach((e2)=>
+    {if(e1 === e2)
+    finalArray.push(e1);
+    }
+    ));
+    return finalArray;
+}
+
 
 function addNewListItem(id) {
     var newListItem = document.getElementById(`${id}Input`).value;
@@ -174,7 +182,7 @@ function addTagToItem() {
 function applyTag() {
     var colorId = document.getElementById("tagDropdown").value;
     var tagContent = document.getElementById("tagDropdown").options[document.getElementById("tagDropdown").selectedIndex].innerHTML;
-    eventAddTagTo.innerHTML += `<div class="tag" id="${colorId}">${tagContent}<div onclick="deleteTag()">❌</div></div>`
+    eventAddTagTo.innerHTML += `<div class="tag" style="margin-right: 8px;" id="${colorId}">${tagContent}<div onclick="deleteTag()">❌</div></div>`
     document.getElementById("applyTagModal").style.display = "none";
 }
 
