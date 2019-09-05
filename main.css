@@ -161,10 +161,12 @@ li span {
     background: black;
     font-size: 12px;
     float: right;
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 .tag.tagpreview {
     float: left;
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 hr {
@@ -173,58 +175,72 @@ hr {
 
 #red {
     background: rgb(231, 38, 38);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #scarlet {
     background: rgb(241, 69, 38);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #orange {
     background: rgb(241, 115, 42);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #yellow {
     background: rgb(246, 166, 16);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #lime {
     background: rgb(87, 189, 19);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #green {
     background: rgb(11, 168, 19);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #blue {
     background: rgb(30, 127, 218);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #indigo {
     background: rgb(92, 39, 238);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #purple {
     background: rgb(108, 9, 200);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #pink {
     background: rgb(226, 35, 178);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #hotpink {
     background: rgb(245, 16, 130);
+    border: 1px rgb(255, 255, 255) solid;
 }
 
 #black {
     background: rgb(20, 20, 20);
+    border: 1px white solid;
 }
 
 #grey {
     background: rgb(128, 128, 128);
+    border: 1px white solid;
 }
 
 #brown {
     background: rgb(121, 76, 37);
+    border: 1px white solid;
 }
 
 .tag div {

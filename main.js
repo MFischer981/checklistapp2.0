@@ -64,8 +64,41 @@ function deleteItem() {
 
 function favoriteItem() {
     event.target.innerHTML = "❤️ Favorited";
-    event.target.parentNode.parentNode.classList.add("star");
+    event.target.parentNode.parentNode.classList.toggle("star");
     event.target.setAttribute("onclick", "unfavoriteItem()")
+
+
+    var listItemInDock = [];
+    var newArray = [];
+    listItemInDock.push("Favorites");
+    
+    newArray = compare(listItemInDock, allLists);
+
+    if (newArray.length === 0) {
+        document.getElementById("listContainer").innerHTML += `
+        <ul id="Favorites">
+        <h1>Favorites</h1>
+        <input type="text" id="FavoritesInput">
+        <button type="button" class="green" onclick="addNewListItem('Favorites')">➕ New List Item</button>
+        <button onclick="deleteList()" class="red">🗑️Delete List</button>
+        <div class="spacer"></div>
+        </ul>`;
+        allLists.push("Favorites");
+    } 
+  
+    newListItem = event.target.parentNode.parentNode.childNodes[1].innerHTML;
+   
+    document.getElementById("Favorites").innerHTML += `
+        <li>
+        <span>${newListItem}</span>
+        <div class="btngroup">
+        <button onclick="deleteItem()" class="red">🗑️Delete</button>
+        <button onclick="editItem()" class="grey">✏️Edit</button>
+        <button onclick="unfavoriteItem()" class="grey">❤️Favorited</button>
+        <button onclick="addTagToItem()" class="grey">➕🏷️Add Tag</button>
+        <button onclick="checkItem()" class="green">☑️Complete</button>
+        </div>
+        </li>`;
 }
 
 function unfavoriteItem() {
@@ -150,6 +183,7 @@ function createTag() {
     var tagName = tag[0].innerHTML;
     document.getElementById("tagDropdown").innerHTML += `"<option value="${tagData}">${tagName}</option>"`;
     document.getElementById("newTagModal").style.display = "none";
+    tag[0].innerHTML = "Tag Preview"
 }
 
 // Close tag popup
