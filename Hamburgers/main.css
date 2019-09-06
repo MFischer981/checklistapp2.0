@@ -9,7 +9,7 @@ html {
 
 #cabins {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .cabin {
@@ -60,4 +60,51 @@ a {
 
 a:hover {
     background: rgb(200, 255, 242);
+}
+
+nav {
+    padding: 10px;
+    display: block;
+    box-shadow: 0 2px 8px 0 rgba(32, 33, 36, .28);
+}
+
+nav div {
+    float: left;
+    padding: 8px;
+    border-right: 1px rgb(216, 216, 216) solid;
+}
+
+nav::after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+nav select {
+    font-family: 'Roboto', sans-serif;
+    border-radius: 100px;
+    padding: 8px;
+    font-size: 18px;
+    margin: 0;
+}
+
+@media (max-width: 1200px) {
+    #cabins {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    #cabins {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    #cabins {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }

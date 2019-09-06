@@ -1,16 +1,18 @@
 let currentListItem = 0;
 let allLists = ["My Checklist"];
 
-
+// Creates a new checklist
 function newList() {
     var newListInput = document.getElementById("newList").value;
     var newListId;
     var listItemInDock = [];
     var newArray = [];
+    // Pushes new list name to an array
     listItemInDock.push(newListInput);
     
+    // Compares current List Names to New List Names
     newArray = compare(listItemInDock, allLists);
-
+    // If there are no repeat list names then a new list is created
     if (newArray.length === 0) {
 
         if (newListInput !== "") {
@@ -39,7 +41,7 @@ function compare(arr1,arr2){
     return finalArray;
 }
 
-
+// Add new item to the list if the new list input box is not empty.
 function addNewListItem(id) {
     var newListItem = document.getElementById(`${id}Input`).value;
     if (newListItem !== "") {
@@ -58,10 +60,12 @@ function addNewListItem(id) {
     }
 }
 
+// Clears list item from the DOM
 function deleteItem() {
     event.target.parentNode.parentNode.outerHTML = "";
 }
 
+// Moves list item to the favorites list. This feature is not yet complete.
 function favoriteItem() {
     event.target.innerHTML = "❤️ Favorited";
     event.target.parentNode.parentNode.classList.toggle("star");
@@ -101,15 +105,15 @@ function favoriteItem() {
         </li>`;
 }
 
+// Unfavorite items by switching innerHTML and remove class. Switch on click attribute to opposite function.
 function unfavoriteItem() {
     event.target.innerHTML = "🖤 Favorite";
     event.target.parentNode.parentNode.classList.remove("star");
     event.target.setAttribute("onclick", "favoriteItem()")
 }
 
-
+// Saves current list item to an array. Displays that list item in input box in modal.
 var editingItem;
-
 function editItem() {
     document.getElementById("editModal").style.display = "block";
     console.log(event.target.parentNode.parentNode.id)
@@ -119,14 +123,14 @@ function editItem() {
     document.getElementById("editListItemInput").focus();
 }
 
-// Save list item edits
+// Save list item edits, hides the modal and writes new input box value over the old innerHTML.
 function saveEdits() {
     document.getElementById("editModal").style.display = "none";
     var newListItem = document.getElementById("editListItemInput").value;
     document.getElementById(editingItem).innerHTML = newListItem;
 }
 
-// Close edit pop up
+// Close edit pop up, cancels the edit modal.
 function closeEdits() {
     document.getElementById("editListItemInput").value = "";
     document.getElementById("editModal").style.display = "none";
@@ -247,6 +251,7 @@ function drop(ev, el) {
     el.appendChild(document.getElementById(data));
 }
 
+// Toggle the visibility for completed list items by using a for loop to check for classes.
 function hideCompletedItem() {
     var completedItems = document.querySelectorAll("li.completed");
     for (let i = 0; i < completedItems.length; i++) {
