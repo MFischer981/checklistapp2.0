@@ -1,5 +1,6 @@
 let currentListItem = 0;
 let allLists = ["My Checklist"];
+let zIndexValue = 100;
 
 // Creates a new checklist
 function newList() {
@@ -9,12 +10,11 @@ function newList() {
     var newArray = [];
     // Pushes new list name to an array
     listItemInDock.push(newListInput);
-    
+
     // Compares current List Names to New List Names
     newArray = compare(listItemInDock, allLists);
     // If there are no repeat list names then a new list is created
     if (newArray.length === 0) {
-
         if (newListInput !== "") {
             newListId = newListInput.replace(/\s/g, '');
             document.getElementById("listContainer").innerHTML += `
@@ -25,19 +25,18 @@ function newList() {
     <button onclick="deleteList()" class="red">🗑️Delete List</button>
     <div class="spacer"></div>
     </ul>`;
-    allLists.push(newListInput);
+            allLists.push(newListInput);
         }
-      }
+    }
 }
 
 // Function to compare arrays to check for repeat lists.
-function compare(arr1,arr2){
+function compare(arr1, arr2) {
     const finalArray = [];
-    arr1.forEach((e1)=>arr2.forEach((e2)=>
-    {if(e1 === e2)
-    finalArray.push(e1);
-    }
-    ));
+    arr1.forEach((e1) => arr2.forEach((e2) => {
+        if (e1 === e2)
+            finalArray.push(e1);
+    }));
     return finalArray;
 }
 
@@ -71,11 +70,10 @@ function favoriteItem() {
     event.target.parentNode.parentNode.classList.toggle("star");
     event.target.setAttribute("onclick", "unfavoriteItem()")
 
-
     var listItemInDock = [];
     var newArray = [];
     listItemInDock.push("Favorites");
-    
+
     newArray = compare(listItemInDock, allLists);
 
     if (newArray.length === 0) {
@@ -88,10 +86,10 @@ function favoriteItem() {
         <div class="spacer"></div>
         </ul>`;
         allLists.push("Favorites");
-    } 
-  
+    }
+
     newListItem = event.target.parentNode.parentNode.childNodes[1].innerHTML;
-   
+
     document.getElementById("Favorites").innerHTML += `
         <li>
         <span>${newListItem}</span>
@@ -114,8 +112,12 @@ function unfavoriteItem() {
 
 // Saves current list item to an array. Displays that list item in input box in modal.
 var editingItem;
+
 function editItem() {
+    zIndexValue++  
     document.getElementById("editModal").style.display = "block";
+    document.getElementById("editModal").style.zIndex = zIndexValue;
+
     console.log(event.target.parentNode.parentNode.id)
     editingItem = event.target.parentNode.parentNode.childNodes[1].id;
     var oldListItem = event.target.parentNode.parentNode.childNodes[1].innerHTML;
@@ -161,6 +163,9 @@ function deleteList() {
     verifyDelete = event.target.parentNode;
     listTitle = verifyDelete.childNodes[1].innerHTML;
     document.getElementById("deleteListModal").style.display = "block";
+    zIndexValue++
+    document.getElementById("deleteListModal").style.zIndex = zIndexValue;
+
     document.getElementById("deleteListModalTitle").innerHTML = `Are you sure you want to delete ${listTitle}? <br> This action cannot be undone.`;
 }
 
@@ -178,6 +183,8 @@ function deleteListCancel() {
 // Create a new tag
 function newTag() {
     document.getElementById("newTagModal").style.display = "block";
+    zIndexValue++
+    document.getElementById("newTagModal").style.zIndex = zIndexValue;
 }
 
 // Create a new tag, display tag pop up
@@ -214,6 +221,8 @@ var eventAddTagTo;
 function addTagToItem() {
     eventAddTagTo = event.target.parentNode.parentNode;
     document.getElementById("applyTagModal").style.display = "block";
+    zIndexValue++
+   document.getElementById("applyTagModal").style.zIndex = zIndexValue;
 }
 
 // Apply tag to tag drop down list
@@ -251,7 +260,7 @@ function drop(ev, el) {
     el.appendChild(document.getElementById(data));
 }
 
-// Toggle the visibility for completed list items by using a for loop to check for classes.
+// Toggle the visibility for completed list items by using a for loop to check for the class of completed.
 function hideCompletedItem() {
     var completedItems = document.querySelectorAll("li.completed");
     for (let i = 0; i < completedItems.length; i++) {

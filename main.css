@@ -41,6 +41,7 @@ body {
     left: 0;
     padding: 20px;
     background: white;
+    border-radius: 6px;
     font-family: 'Lexend Deca', sans-serif;
     width: 100%;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
@@ -90,6 +91,7 @@ ul {
     background: white;
     font-family: 'Lexend Deca', sans-serif;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
 }
 
 ul li {
@@ -101,6 +103,7 @@ ul li {
     width: 100%;
     margin: 10px 0;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
 }
 
 ul li.star {
@@ -143,7 +146,7 @@ li span {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 140px;
+    margin-top: 160px;
 }
 
 
@@ -164,14 +167,14 @@ li span {
     border-radius: 1000px;
     text-transform: capitalize;
     background: black;
-    font-size: 12px;
+    font-size: 16px;
     float: right;
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 .tag.tagpreview {
     float: left;
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 hr {
@@ -180,72 +183,72 @@ hr {
 
 #red {
     background: rgb(231, 38, 38);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #scarlet {
     background: rgb(241, 69, 38);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #orange {
     background: rgb(241, 115, 42);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #yellow {
     background: rgb(246, 166, 16);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #lime {
     background: rgb(87, 189, 19);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #green {
     background: rgb(11, 168, 19);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #blue {
     background: rgb(30, 127, 218);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #indigo {
     background: rgb(92, 39, 238);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #purple {
     background: rgb(108, 9, 200);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #pink {
     background: rgb(226, 35, 178);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #hotpink {
     background: rgb(245, 16, 130);
-    border: 1px rgb(255, 255, 255) solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #black {
     background: rgb(20, 20, 20);
-    border: 1px white solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #grey {
     background: rgb(128, 128, 128);
-    border: 1px white solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 #brown {
     background: rgb(121, 76, 37);
-    border: 1px white solid;
+    border: 2px rgb(197, 197, 197) solid;
 }
 
 .tag div {
