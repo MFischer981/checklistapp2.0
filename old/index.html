@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <!-- Modal -->
+    <div id="editModal">
+        <h1>Edit List Item</h1>
+        <input type="text" id="editListItemInput">
+        <button type="button" class="green" onclick="saveEdits()">💾Save Changes</button>
+        <button type="button" class="grey" onclick="closeEdits()">👎Cancel</button>
+    </div>
+
+    <div id="deleteListModal">
+        <h1 id="deleteListModalTitle"></h1>
+        <button type="button" class="red" onclick="deleteListConfirm()">👍Yes, I'm Sure.</button>
+        <button type="button" class="grey" onclick="deleteListCancel()">👎Cancel</button>
+    </div>
+
+    <div id="newTagModal">
+        <h1>Create A New Tag</h1>
+        <input type="text" id="newTagInput" onkeyup="setTagName()"><br><br>
+        <div class="spacer"></div>
+        <div class="color" id="red" onclick="setTagColor()"></div>
+        <div class="color" id="scarlet" onclick="setTagColor()"></div>
+        <div class="color" id="orange" onclick="setTagColor()"></div>
+        <div class="color" id="yellow" onclick="setTagColor()"></div>
+        <div class="color" id="lime" onclick="setTagColor()"></div>
+        <div class="color" id="green" onclick="setTagColor()"></div>
+        <div class="color" id="blue" onclick="setTagColor()"></div><br>
+        <div class="color" id="indigo" onclick="setTagColor()"></div>
+        <div class="color" id="purple" onclick="setTagColor()"></div>
+        <div class="color" id="pink" onclick="setTagColor()"></div>
+        <div class="color" id="hotpink" onclick="setTagColor()"></div>
+        <div class="color" id="brown" onclick="setTagColor()"></div>
+        <div class="color" id="grey" onclick="setTagColor()"></div>
+        <div class="color" id="black" onclick="setTagColor()"></div><br>
+        <div class="tag tagpreview">Tag Preview</div><br><br><br>
+        <div class="sm_spacer"></div>
+        <button type="button" class="green" onclick="createTag()">➕🏷️Create Tag</button>
+        <button type="button" class="grey" onclick="closeTag()">👎Cancel</button>
+    </div>
+
+    <div id="applyTagModal">
+        <h1>Apply a tag to this list. To create a tag click the New Tag button in the top menu bar.</h1>
+        <select id="tagDropdown">
+            <option value="#" disabled>Select a tag.</option>
+        </select>
+        <br>
+        <div class="spacer"></div>
+        <button type="button" class="red" onclick="applyTag()">👍Yes, I'm Sure.</button>
+        <button type="button" class="grey" onclick="cancelApplyTag()">👎Cancel</button>
+    </div>
+
+<!-- Modals need to be before the container in order to protect the integrity. -->
+    <div class="container">
+        <h1>List.io | Create a new list.</h1>
+        <input type="text" id="newList">
+        <button type="button" class="green" onclick="newList()">➕📝New List</button>
+        <button type="button" class="green" onclick="newTag()">➕🏷️New Tag</button>
+        <button type="button" class="grey" onclick="hideCompletedItem()">👁️Hide Completed Tasks</button>
+
+    </div>
+
+    <div id="listContainer">
+        <ul id="mainList" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+            <h1>My Checklist</h1>
+            <input type="text" id="mainListInput">
+            <button type="button" class="green" onclick="addNewListItem('mainList')">➕ New List Item</button>
+            <button onclick="deleteList()" class="red">🗑️Delete List</button>
+            <div class="spacer"></div>
+        </ul>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

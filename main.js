@@ -1,278 +1,272 @@
-let currentListItem = 0;
-let allLists = ["My Checklist"];
-let zIndexValue = 100;
-
-// Creates a new checklist
-function newList() {
-    var newListInput = document.getElementById("newList").value;
-    var newListId;
-    var listItemInDock = [];
-    var newArray = [];
-    // Pushes new list name to an array
-    listItemInDock.push(newListInput);
-
-    // Compares current List Names to New List Names
-    newArray = compare(listItemInDock, allLists);
-    // If there are no repeat list names then a new list is created
-    if (newArray.length === 0) {
-        if (newListInput !== "") {
-            newListId = newListInput.replace(/\s/g, '');
-            document.getElementById("listContainer").innerHTML += `
-    <ul id="${newListId}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-    <h1>${newListInput}</h1>
-    <input type="text" id="${newListId}Input">
-    <button type="button" class="green" onclick="addNewListItem('${newListId}')">➕ New List Item</button>
-    <button onclick="deleteList()" class="red">🗑️Delete List</button>
-    <div class="spacer"></div>
-    </ul>`;
-            allLists.push(newListInput);
+let listData = [{
+    listName: "Tutorial Checklist",
+    listTag: "tutorialchecklist",
+    listColor: "#FF0000",
+    listItems: [{
+            listItemName: "Use the Create New List Input to create a new checklist.",
+            completed: false,
+            favorited: false
+        },
+        {
+            listItemName: "Within each checklist you can use the add to list button to add new list items to your lists.",
+            completed: false,
+            favorited: false
+        },
+        {
+            listItemName: "Once a task has been completed you make click the ✔️ button to mark the task as complete. If you mistakenly ✔️ a list item you can click ❌ to uncheck a task.",
+            completed: false,
+            favorited: false
+        },
+        {
+            listItemName: "If a list item is very important you can favorite it by clicking the 🖤 button. To unfavorite a list item you can click the ❤️ button.",
+            completed: false,
+            favorited: false
+        },
+        {
+            listItemName: "If you need to modify a list item which you have already created you can click the 📝 button.",
+            completed: false,
+            favorited: false
+        },
+        {
+            listItemName: "If you want to remove a list item you can use the 🗑️ button. Removing a list item cannot be undone.",
+            completed: false,
+            favorited: false
+        },
+        {
+            listItemName: "Update 1.1: You can use the color picker square next to the 🎨 to change the color of a list. This can help distinguish the list from other lists. Additionally you can edit the title of each list using the Edit List Title button at the top of each list.",
+            completed: false,
+            favorited: false
         }
-    }
-}
+    ]
+}]
 
-// Function to compare arrays to check for repeat lists.
-function compare(arr1, arr2) {
-    const finalArray = [];
-    arr1.forEach((e1) => arr2.forEach((e2) => {
-        if (e1 === e2)
-            finalArray.push(e1);
-    }));
-    return finalArray;
-}
+let allTags = [
+    "🔥 Urgent",
+    "📅 Date",
+    "🗺️ Location",
+    "🕒 Time"
+]
 
-// Add new item to the list if the new list input box is not empty.
-function addNewListItem(id) {
-    var newListItem = document.getElementById(`${id}Input`).value;
-    if (newListItem !== "") {
-        currentListItem++;
-        document.getElementById(id).innerHTML += `
-        <li id="listItem${currentListItem}" draggable="true" ondragstart="drag(event)">
-        <span id="listItem${currentListItem}content">${newListItem}</span>
-        <div class="btngroup">
-        <button onclick="deleteItem()" class="red">🗑️Delete</button>
-        <button onclick="editItem()" class="grey">✏️Edit</button>
-        <button onclick="favoriteItem()" class="grey">🖤Favorite</button>
-        <button onclick="addTagToItem()" class="grey">➕🏷️Add Tag</button>
-        <button onclick="checkItem()" class="green">☑️Complete</button>
-        </div>
-        </li>`;
-    }
-}
 
-// Clears list item from the DOM
-function deleteItem() {
-    event.target.parentNode.parentNode.outerHTML = "";
-}
 
-// Moves list item to the favorites list. This feature is not yet complete.
-function favoriteItem() {
-    event.target.innerHTML = "❤️ Favorited";
-    event.target.parentNode.parentNode.classList.toggle("star");
-    event.target.setAttribute("onclick", "unfavoriteItem()")
+function onLoad() {
 
-    var listItemInDock = [];
-    var newArray = [];
-    listItemInDock.push("Favorites");
 
-    newArray = compare(listItemInDock, allLists);
+    document.getElementById("listContainer").innerHTML = "";
+    for (let i = 0; i < listData.length; i++) {
+        var totalNoListItems = listData[i].listItems.length;
+        console.log(totalNoListItems)
 
-    if (newArray.length === 0) {
-        document.getElementById("listContainer").innerHTML += `
-        <ul id="Favorites">
-        <h1>Favorites</h1>
-        <input type="text" id="FavoritesInput">
-        <button type="button" class="green" onclick="addNewListItem('Favorites')">➕ New List Item</button>
-        <button onclick="deleteList()" class="red">🗑️Delete List</button>
+
+        document.getElementById("listContainer").innerHTML +=
+            `<div class="list" style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to bottom, ${listData[i].listColor} 0, white)">
         <div class="spacer"></div>
-        </ul>`;
-        allLists.push("Favorites");
-    }
-
-    newListItem = event.target.parentNode.parentNode.childNodes[1].innerHTML;
-
-    document.getElementById("Favorites").innerHTML += `
-        <li>
-        <span>${newListItem}</span>
-        <div class="btngroup">
-        <button onclick="deleteItem()" class="red">🗑️Delete</button>
-        <button onclick="editItem()" class="grey">✏️Edit</button>
-        <button onclick="unfavoriteItem()" class="grey">❤️Favorited</button>
-        <button onclick="addTagToItem()" class="grey">➕🏷️Add Tag</button>
-        <button onclick="checkItem()" class="green">☑️Complete</button>
+        <h1>${listData[i].listName}</h1>
+        <input type="text" class="addItemToList" id="listItemInput">
+        <button onclick="addToList(${i})">Add To List</button>
+        <button onclick="initListEdit(${i})">Edit List Title</button>
+        <button onclick="deleteList(${i})">Delete List</button>
+        <div class="spacer"></div>
+        <input type="color" onchange="changeColor(${i})" value="${listData[i].listColor}" class="" id="">
+        <h3>🎨 Change List Color</h3>
+        <div id="${listData[i].listTag}progress" class="progress">
+        <div class="filler" style="width: 0%; background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), ${listData[i].listColor}">0%</div>
         </div>
-        </li>`;
-}
+        <ul id="${listData[i].listTag}">
+        </ul>
+        </div>
+        `
+        var totalCompleteListItems = 0;
+        for (let j = 0; j < listData[i].listItems.length; j++) {
 
-// Unfavorite items by switching innerHTML and remove class. Switch on click attribute to opposite function.
-function unfavoriteItem() {
-    event.target.innerHTML = "🖤 Favorite";
-    event.target.parentNode.parentNode.classList.remove("star");
-    event.target.setAttribute("onclick", "favoriteItem()")
-}
 
-// Saves current list item to an array. Displays that list item in input box in modal.
-var editingItem;
+            if (listData[i].listItems[j].completed === true) {
+                totalCompleteListItems++;
+            }
+            console.log(totalCompleteListItems);
 
-function editItem() {
-    zIndexValue++  
-    document.getElementById("editModal").style.display = "block";
-    document.getElementById("editModal").style.zIndex = zIndexValue;
+            var progressBar = document.getElementById(`${listData[i].listTag}progress`)
+            var width = ((totalCompleteListItems / totalNoListItems) * 100).toFixed(0);
+            progressBar.innerHTML = `<div class="filler" style="width: ${width}%; background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), ${listData[i].listColor}">${width}%</div>`;
+            var listPercentage = `${width}%`;
 
-    console.log(event.target.parentNode.parentNode.id)
-    editingItem = event.target.parentNode.parentNode.childNodes[1].id;
-    var oldListItem = event.target.parentNode.parentNode.childNodes[1].innerHTML;
-    document.getElementById("editListItemInput").value = oldListItem;
-    document.getElementById("editListItemInput").focus();
-}
+            listData[i].listCompletion = listPercentage;
 
-// Save list item edits, hides the modal and writes new input box value over the old innerHTML.
-function saveEdits() {
-    document.getElementById("editModal").style.display = "none";
-    var newListItem = document.getElementById("editListItemInput").value;
-    document.getElementById(editingItem).innerHTML = newListItem;
-}
+            if (listData[i].listItems[j].completed === true && listData[i].listItems[j].favorited === true) {
 
-// Close edit pop up, cancels the edit modal.
-function closeEdits() {
-    document.getElementById("editListItemInput").value = "";
-    document.getElementById("editModal").style.display = "none";
-}
+                    document.getElementById(listData[i].listTag).innerHTML += `<li class="favorite complete" id="${listData[i].listTag}${j}">
+                    <span>◼️✅❤️ ${listData[i].listItems[j].listItemName}</span>
+                    <button onclick="deleteFromList(${i}, ${j})">🗑️</button>
+                    <button onclick="initEdit(${i}, ${j})">📝</button>
+                    <button onclick="unfavorite(${i}, ${j})">❤️</button>
+                    <button onclick="uncomplete(${i}, ${j})">❌</button>
+                    </li>`
+                
+                listData[i].listItems[j].listItemId = `${listData[i].listTag}${j}`
+            } else if (listData[i].listItems[j].completed === true) {
 
-// Check list item
-function checkItem() {
-    event.target.parentNode.parentNode.classList.add("completed");
-    event.target.parentNode.innerHTML = '<button onclick="deleteItem()" class="red">🗑️Delete</button><button onclick="uncheckItem()" class="grey">↩️Undo</button>';
-}
+                document.getElementById(listData[i].listTag).innerHTML += `<li class="complete" id="${listData[i].listTag}${j}"> 
+                <span>◼️✅ ${listData[i].listItems[j].listItemName}</span>
+                <button onclick="deleteFromList(${i}, ${j})">🗑️</button>
+                <button onclick="initEdit(${i}, ${j})">📝</button>
+                <button onclick="favorite(${i}, ${j})">🖤</button>
+                <button onclick="uncomplete(${i}, ${j})">❌</button>
+                </li>`
 
-// Uncheck list item
-function uncheckItem() {
-    event.target.parentNode.parentNode.classList.remove("completed");
-    event.target.parentNode.innerHTML = `<button onclick="deleteItem()" class="red">🗑️Delete</button>
-    <button onclick="editItem()" class="grey">✏️Edit</button>
-    <button onclick="favoriteItem()" class="grey">🖤Favorite</button>
-    <button onclick="addTagToItem()" class="grey">➕🏷️Add Tag</button>
-    <button onclick="checkItem()" class="green">☑️Complete</button>`;
-}
+                listData[i].listItems[j].listItemId = `${listData[i].listTag}${j}`
+            } else if (listData[i].listItems[j].favorited === true) {
 
-// Variables for delete list popup
-let verifyDelete;
-let listTitle;
+                document.getElementById(listData[i].listTag).innerHTML += `<li class="favorite" id="${listData[i].listTag}${j}"> 
+                <span>◼️❤️ ${listData[i].listItems[j].listItemName}</span>
+                <button onclick="deleteFromList(${i}, ${j})">🗑️</button>
+                <button onclick="initEdit(${i}, ${j})">📝</button>
+                <button onclick="unfavorite(${i}, ${j})">❤️</button>
+                <button onclick="complete(${i}, ${j})">✔️</button>
+                </li>`
 
-// Display delete list pop up
-function deleteList() {
-    verifyDelete = event.target.parentNode;
-    listTitle = verifyDelete.childNodes[1].innerHTML;
-    document.getElementById("deleteListModal").style.display = "block";
-    zIndexValue++
-    document.getElementById("deleteListModal").style.zIndex = zIndexValue;
+                listData[i].listItems[j].listItemId = `${listData[i].listTag}${j}`
+            } else {
 
-    document.getElementById("deleteListModalTitle").innerHTML = `Are you sure you want to delete ${listTitle}? <br> This action cannot be undone.`;
-}
+                document.getElementById(listData[i].listTag).innerHTML += `<li id="${listData[i].listTag}${j}">
+                <span>◼️ ${listData[i].listItems[j].listItemName}</span>
+                <button onclick="deleteFromList(${i}, ${j})">🗑️</button>
+                <button onclick="initEdit(${i}, ${j})">📝</button>
+                <button onclick="favorite(${i}, ${j})">🖤</button> 
+                <button onclick="complete(${i}, ${j})">✔️</button>
+                </li>`
 
-// Confirm the deletion of a list
-function deleteListConfirm() {
-    document.getElementById(verifyDelete.id).outerHTML = "";
-    document.getElementById("deleteListModal").style.display = "none";
-}
+                listData[i].listItems[j].listItemId = `${listData[i].listTag}${j}`
+            }
+        }
 
-// Cancel delete list pop up
-function deleteListCancel() {
-    document.getElementById("deleteListModal").style.display = "none";
-}
-
-// Create a new tag
-function newTag() {
-    document.getElementById("newTagModal").style.display = "block";
-    zIndexValue++
-    document.getElementById("newTagModal").style.zIndex = zIndexValue;
-}
-
-// Create a new tag, display tag pop up
-function createTag() {
-    var tag = document.getElementsByClassName("tag");
-    var tagData = tag[0].id;
-    var tagName = tag[0].innerHTML;
-    document.getElementById("tagDropdown").innerHTML += `"<option value="${tagData}">${tagName}</option>"`;
-    document.getElementById("newTagModal").style.display = "none";
-    tag[0].innerHTML = "Tag Preview"
-}
-
-// Close tag popup
-function closeTag() {
-    document.getElementById("newTagModal").style.display = "none";
-}
-
-// Set tag color
-function setTagColor() {
-    var tag = document.getElementsByClassName("tag");
-    var tagColor = event.target.id;
-    tag[0].id = `${tagColor}`;
-}
-
-// Set a tag name
-function setTagName() {
-    var tag = document.getElementsByClassName("tag");
-    tag[0].innerHTML = document.getElementById("newTagInput").value;
-}
-
-// Add tag to list item
-var eventAddTagTo;
-
-function addTagToItem() {
-    eventAddTagTo = event.target.parentNode.parentNode;
-    document.getElementById("applyTagModal").style.display = "block";
-    zIndexValue++
-   document.getElementById("applyTagModal").style.zIndex = zIndexValue;
-}
-
-// Apply tag to tag drop down list
-function applyTag() {
-    var colorId = document.getElementById("tagDropdown").value;
-    var tagContent = document.getElementById("tagDropdown").options[document.getElementById("tagDropdown").selectedIndex].innerHTML;
-    eventAddTagTo.innerHTML += `<div class="tag" style="margin-right: 8px;" id="${colorId}">${tagContent}<div onclick="deleteTag()">❌</div></div>`
-    document.getElementById("applyTagModal").style.display = "none";
-}
-
-// Hide tag pop up
-function cancelApplyTag() {
-    document.getElementById("applyTagModal").style.display = "none";
-}
-
-// Delete tag
-function deleteTag() {
-    event.target.parentNode.outerHTML = "";
-}
-
-// Prevent default behavior and allow drop on lists.
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-// Drag events, transfer text data
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-// Drop element in new list
-function drop(ev, el) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    el.appendChild(document.getElementById(data));
-}
-
-// Toggle the visibility for completed list items by using a for loop to check for the class of completed.
-function hideCompletedItem() {
-    var completedItems = document.querySelectorAll("li.completed");
-    for (let i = 0; i < completedItems.length; i++) {
-        completedItems[i].style.display = "none";
     }
-    event.target.outerHTML = `<button type="button" class="grey" onclick="unhideCompletedItem()">👁️Unhide Completed Tasks</button>`
+
 }
 
-function unhideCompletedItem() {
-    var completedItems = document.querySelectorAll("li.completed");
-    for (let i = 0; i < completedItems.length; i++) {
-        completedItems[i].style.display = "block";
+function newList() {
+    if (document.getElementById("newList").value !== "") {
+        listData.push({
+            listName: document.getElementById("newList").value,
+            listTag: ((document.getElementById("newList").value).replace(/\s/g, '')).toLowerCase(),
+            listColor: random_rgba(),
+            listItems: []
+        })
+        onLoad();
     }
-    event.target.outerHTML = `<button type="button" class="grey" onclick="hideCompletedItem()">👁️Hide Completed Tasks</button>`
+}
+
+function addToList(index) {
+    listData[index].listItems.push({
+        listItemName: document.querySelectorAll(".addItemToList")[index].value,
+        completed: false,
+        favorited: false
+    })
+    onLoad();
+}
+
+function deleteFromList(index, subindex) {
+    listData[index].listItems.splice(subindex, 1);
+    onLoad();
+}
+
+// Edit List Items
+let editContent;
+let editIndex;
+let editSubIndex;
+function initEdit(index, subindex) {
+    editIndex = index;
+    editSubIndex = subindex;
+    document.getElementById("editModal").classList.toggle("toggle-display");
+    document.getElementById("editListItem").value = listData[editIndex].listItems[editSubIndex].listItemName
+}
+
+function editContentSave() {
+    editContent = document.getElementById("editListItem").value;
+    document.getElementById("editModal").classList.toggle("toggle-display");
+    listData[editIndex].listItems[editSubIndex].listItemName = editContent;
+    onLoad();
+}
+
+// Edit List Content
+let editListContent;
+let editListIndex;
+
+function initListEdit(index) {
+    editListIndex = index;
+    document.getElementById("editListModal").classList.toggle("toggle-display");
+    document.getElementById("editListTitle").value = listData[editListIndex].listName
+}
+
+function editListTitleSave() {
+    editListContent = document.getElementById("editListTitle").value;
+    document.getElementById("editListModal").classList.toggle("toggle-display");
+    listData[editListIndex].listName = editListContent;
+    onLoad();
+}
+
+// Edit List Content
+let deleteListIndex;
+
+function deleteList(index) {
+    deleteListIndex = index;
+    document.getElementById("deleteListModal").classList.toggle("toggle-display");
+    document.getElementById("deleteListModalTitle").innerHTML = `Are you sure you want to delete ${listData[deleteListIndex].listName}?`
+}
+
+function confirmDelete() {
+    listData.splice(deleteListIndex, 1);
+    document.getElementById("deleteListModal").classList.toggle("toggle-display");
+    onLoad();
+}
+
+
+// Toggle Favorite
+function favorite(index, subindex) {
+    listData[index].listItems[subindex].favorited = true;
+    onLoad();
+    event.target.outerHTML = `<button onclick="unfavorite(${index}, ${subindex})">Unfavorite</button>`
+}
+
+function unfavorite(index, subindex) {
+    listData[index].listItems[subindex].favorited = false;
+    onLoad();
+    event.target.outerHTML = `<button onclick="favorite(${index}, ${subindex})">Favorite</button>`
+}
+
+// Toggle Complete
+function complete(index, subindex) {
+    listData[index].listItems[subindex].completed = true;
+    onLoad();
+    event.target.outerHTML = `<button onclick="uncomplete(${index}, ${subindex})">Uncomplete</button>`
+}
+
+function uncomplete(index, subindex) {
+    listData[index].listItems[subindex].completed = false;
+    onLoad();
+    event.target.outerHTML = `<button onclick="complete(${index}, ${subindex})">Complete</button>`
+}
+
+function openTagModal() {
+    document.getElementById("createTagModal").classList.toggle("toggle-display");
+}
+
+function newTagSave() {
+    allTags.push(document.getElementById("tagNameInput").value)
+}
+
+
+
+// Generate random RGB value for new lists.
+function random_rgba() {
+    let o = Math.round,
+        r = Math.random,
+        s = 255;
+    return 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
+}
+
+// Change RGB values.
+function changeColor(index) {
+    listData[index].listColor = event.target.value;
+    onLoad();
+    console.log(event.target.value)
 }
