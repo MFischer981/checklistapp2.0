@@ -45,11 +45,13 @@ nav {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 0 0 8px 8px;
     margin: 0;
+    display: block;
+    padding: 20px;
+    z-index: 101;
 }
 
 .checklistContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 
 .modal {
@@ -104,6 +106,16 @@ button {
     border-radius: 8px;
     padding: 8px 12px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+
+
+button.emoji {
+    padding: 8px 9px 0px;
+    text-align: center;
+    border-radius: 100px;
+    font-size: 28px;
 }
 
 button:not(:first-of-type) {
@@ -124,7 +136,7 @@ li button {
 .spacer::after {
     content: "";
     display: table;
-    
+    clear: both;
 }
 
 input {
@@ -152,4 +164,36 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 }
 input[type="color"]::-webkit-color-swatch {
 	border: none;
+}
+
+.tag {
+    clear: both;
+    display: inline-block;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border-right: none; 
+    padding: 0 4px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-left: 8px;
+} 
+
+select {
+    z-index: 0;
+    height: 28px;
+   position: relative;
+   display: none;
+   margin-top: 2px;
+}
+
+li:hover select  {
+    display: inline-block;
+}
+
+.tag span {
+    display: inline-block;
+    float: right;
+    margin: 0;
+    padding: 2px;
+    margin-left: 6px;
 }
