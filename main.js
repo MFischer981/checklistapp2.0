@@ -75,8 +75,14 @@ function onLoad() {
         <button onclick="initListEdit(${i})">Edit List Title</button>
         <button onclick="deleteList(${i})">Delete List</button>
         <div class="spacer"></div>
+        <div class="floatleft">
         <input type="color" oninput="changeColor(${i})" value="${listData[i].listColor}" class="" id="">
-        <h3>🎨 Change List Color</h3>
+        <h3>🎨 ${listData[i].listColor}</h3>
+        </div>
+        <div class="floatright">
+        <input type="color" oninput="changeColor2(${i})" value="${listData[i].listColor2}" style="float: right; margin-left: 4px;">
+        <h3>🎨 ${listData[i].listColor2}</h3>
+        </div>
         <div id="${listData[i].listTag}progress" class="progress">
         <div class="filler" style="width: 0%; background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), linear-gradient(45deg, ${listData[i].listColor}, ${listData[i].listColor2})">0%</div>
         </div>
@@ -311,5 +317,10 @@ function random_rgba() {
 function changeColor(index) {
     listData[index].listColor = event.target.value;
     onLoad();
-    console.log(event.target.value)
+}
+
+// Change RGB values.
+function changeColor2(index) {
+    listData[index].listColor2 = event.target.value;
+    onLoad();
 }
