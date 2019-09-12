@@ -10,22 +10,19 @@ html {
   body {
       margin: 0;
   }
-
-.checklistContainer, .list, nav, .modal {
+ .list, nav, .modal {
  background: white;
  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
  padding: 10px;
- border-radius: 8px;
  margin: 8px 0;
 }
 
 .progress {
     display: block;
     width: 100%;
-    background: rgba(255, 255, 255, 0.5);
+    background: white;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
     font-family: 'Manjari', sans-serif;
-    border-radius: 8px;
     margin: 38px 0 0;
 }
 
@@ -34,7 +31,6 @@ html {
     display: block;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
     font-family: 'Manjari', sans-serif;
-    border-radius: 8px;
     text-align: center;
     transition: .2s;
 }
@@ -43,7 +39,6 @@ nav {
     top: 0;
     position: sticky;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 0 0 8px 8px;
     margin: 0;
     display: block;
     padding: 20px;
@@ -80,15 +75,14 @@ ul {
     margin: 10px 0;
     list-style-type: none;
     padding: 0;
-    font-size: 20px;
+    transition: .2s;
 }
 
 ul li {
     padding: 8px;
-    background: rgba(255, 255, 255, 0.5);
+    background: white;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
     margin: 8px 0;
-    border-radius: 8px;
     min-height: 47px;
     display: table;
     width: 100%;
@@ -101,19 +95,11 @@ ul li span {
 
 button {
     font-family: 'Manjari', sans-serif;
-    background: rgba(255, 255, 255, 0.5);
+    background: white;
     border: none;
-    border-radius: 8px;
     padding: 8px 12px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
     text-align: center;
-}
-
-button.emoji {
-    padding: 8px 9px 0px;
-    text-align: center;
-    border-radius: 100px;
-    font-size: 28px;
 }
 
 button:not(:first-of-type) {
@@ -121,8 +107,14 @@ button:not(:first-of-type) {
 }
 
 li button {
+    display: none;
     float: right;
     margin-left: 6px;
+    padding: 6px 12px;
+}
+
+li:hover button {
+    display: inline-block;
 }
 
 .spacer {
@@ -141,8 +133,7 @@ input {
     font-family: 'Manjari', sans-serif;
     background: rgb(255, 255, 255);
     border: none;
-    border-radius: 8px;
-    padding: 6px 10px;
+    padding: 7px 10px;
     border: 1px solid rgb(200, 200, 200);
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
@@ -165,22 +156,31 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .tag {
-    clear: both;
     display: inline-block;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.5);
+    background: white;
     border-right: none; 
     padding: 0 4px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
-    border-radius: 8px;
     margin-left: 8px;
+    float: left;
 } 
+
+.tag:first-of-type {
+    margin-left: 0px;
+}
 
 select {
     z-index: 0;
-    height: 28px;
+    height: 30px;
    position: relative;
    display: none;
+   margin-right: 8px;
+   float: left;
+   border-radius: 0px;
+}
+
+option {
+    font-size: 14px;
 }
 
 li:hover select  {

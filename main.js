@@ -7,42 +7,49 @@ let listData = [{
             listItemName: "Use the Create New List Input to create a new checklist.",
             completed: false,
             favorited: false,
+            locked: false,
             tags: ["🍎 Tutorial"]
         },
         {
             listItemName: "Within each checklist you can use the add to list button to add new list items to your lists.",
             completed: false,
             favorited: false,
+            locked: false,
             tags: ["🍎 Tutorial"]
         },
         {
             listItemName: "Once a task has been completed you make click the ✔️ button to mark the task as complete. If you mistakenly ✔️ a list item you can click ❌ to uncheck a task.",
             completed: false,
             favorited: false,
+            locked: false,
             tags: ["🍎 Tutorial"]
         },
         {
             listItemName: "If a list item is very important you can favorite it by clicking the 🖤 button. To unfavorite a list item you can click the ❤️ button.",
             completed: false,
             favorited: false,
+            locked: false,
             tags: ["🍎 Tutorial"]
         },
         {
             listItemName: "If you need to modify a list item which you have already created you can click the 📝 button.",
             completed: false,
             favorited: false,
+            locked: false,
             tags: ["🍎 Tutorial"]
         },
         {
             listItemName: "If you want to remove a list item you can use the 🗑️ button. Removing a list item cannot be undone.",
             completed: false,
             favorited: false,
+            locked: false,
             tags: ["🍎 Tutorial"]
         },
         {
             listItemName: "Update 1.1: You can use the color picker square next to the 🎨 to change the color of a list. This can help distinguish the list from other lists. Additionally you can edit the title of each list using the Edit List Title button at the top of each list.",
             completed: false,
             favorited: false,
+            locked: false,
             tags: ["🍎 Tutorial", "🖥️ Update 1.1"]
         }
     ]
@@ -67,7 +74,7 @@ function onLoad() {
 
 
         document.getElementById("listContainer").innerHTML +=
-            `<div class="list" style="background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), linear-gradient(45deg, ${listData[i].listColor}, ${listData[i].listColor2})">
+            `<div class="list" style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), linear-gradient(45deg, ${listData[i].listColor}, ${listData[i].listColor2})">
         <div class="spacer"></div>
         <h1>${listData[i].listName}</h1>
         <input type="text" class="addItemToList" id="listItemInput">
@@ -84,7 +91,7 @@ function onLoad() {
         <h3>🎨 ${listData[i].listColor2}</h3>
         </div>
         <div id="${listData[i].listTag}progress" class="progress">
-        <div class="filler" style="width: 0%; background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), linear-gradient(45deg, ${listData[i].listColor}, ${listData[i].listColor2})">0%</div>
+        <div class="filler" style="width: 0%; background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), linear-gradient(45deg, ${listData[i].listColor}, ${listData[i].listColor2})">0%</div>
         </div>
         <ul id="${listData[i].listTag}">
         </ul>
@@ -114,7 +121,9 @@ function onLoad() {
                     <button onclick="initEdit(${i}, ${j})">📝Edit</button>
                     <button onclick="unfavorite(${i}, ${j})">❤️Unfavorite</button>
                     <button onclick="uncomplete(${i}, ${j})">❌Uncheck</button>
-                    <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})"><select>
+                    <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})">
+                        <option>Select A Tag</option>
+                    <select>
                     </li>
                     `
                 
@@ -128,7 +137,9 @@ function onLoad() {
                 <button onclick="initEdit(${i}, ${j})">📝Edit</button>
                 <button onclick="favorite(${i}, ${j})">🖤Favorite</button>
                 <button onclick="uncomplete(${i}, ${j})">❌Uncheck</button>
-                <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})"><select>
+                <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})">
+                <option>Select A Tag</option>
+                <select>
                 </li>
                 `
 
@@ -141,7 +152,9 @@ function onLoad() {
                 <button onclick="initEdit(${i}, ${j})">📝Edit</button>
                 <button onclick="unfavorite(${i}, ${j})">❤️Unfavorite</button>
                 <button onclick="complete(${i}, ${j})">✔️Check</button>
-                <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})"><select>
+                <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})">
+                <option>Select A Tag</option>
+                <select>
                 </li>
                 `
 
@@ -154,7 +167,9 @@ function onLoad() {
                 <button onclick="initEdit(${i}, ${j})">📝Edit</button>
                 <button onclick="favorite(${i}, ${j})">🖤Favorite</button> 
                 <button onclick="complete(${i}, ${j})">✔️Check</button>
-                <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})"><select>
+                <select id="${listData[i].listTag}${j}tagSelect" onchange="pushTag(${i}, ${j})">
+                <option>Select A Tag</option>
+                <select>
                 </li>
                 `
 
